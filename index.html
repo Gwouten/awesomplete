@@ -32,19 +32,17 @@
 
 <body>
 
-  <input>
-  <!-- <ul id="sampleList">
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-    <li>Four</li>
-    <li>Five</li>
-    <li>Six</li>
-    <li>Seven</li>
-    <li>Eight</li>
-    <li>Nine</li>
-    <li>Ten</li>
-  </ul> -->
+  <h2 id="communes">
+    <span id="communes-list"></span>
+  </h2>
+  <div id="query-group">
+    <input type="radio" name="query-type" id="query-code" checked>
+    <label for="query-code">Code postal/Commune</label>
+    <input type="radio" name="query-type" id="query-candidat">
+    <label for="query-candidat">Candidat</label>
+  </div>
+
+  <input id="query">
 
   <script src="./js/awesomplete.js"></script>
   <script src="./js/main.js"></script>

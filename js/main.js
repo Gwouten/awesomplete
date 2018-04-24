@@ -1,5 +1,7 @@
 // Instantiate Awesomplete
-const input = document.querySelector("input");
+const input = document.querySelector("#query");
+let currentRadioButton = "";
+
 const list = [
   {
     code: 1000,
@@ -17,16 +19,40 @@ const list = [
     candidats: ["Etienne", "Sandro"]
   }
 ];
-const myList = list.map(function(item) {});
 
-new Awesomplete(input, {
-  list: myList,
-  minChars: 1,
-  replace: function(text) {
-    this.input.value = text + " tadaa";
-  }
+const awesomplete = function(list) {
+  new Awesomplete(input, {
+    list,
+    minChars: 1
+  });
+};
+
+let myList = list.map(function(item) {
+  return item.code + " " + item.commune;
 });
 
-input.addEventListener("awesomplete-select", function() {
-  console.log("submitted!");
+// Try to create a list based on the input value
+document.querySelector("#query-group").addEventListener("change", function(e) {
+  currentRadioButton = e.target.id;
+  input.value = "";
+  if (currentRadioButton === "query-candidat") {
+    myList = list.map(function(item) {
+      return item.candidats;
+    });
+    myList = myList.reduce(function(a, b) {
+      return a + "," + b;
+    });
+    awesomplete(myList);
+  } else {
+    myList = list.map(function(item) {
+      return item.code + " " + item.commune;
+    });
+    awesomplete(myList);
+  }
+  console.log(myList);
+});
+
+// Do something when selecting an option from the autocomplete dropdown
+input.addEventListener("awesomplete-select", function(e) {
+  console.log(e);
 });
