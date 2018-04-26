@@ -63,14 +63,35 @@ input.addEventListener("awesomplete-select", function(e) {
 });
 
 // Rotate city names
-const communes = ["Bruxelles", "Ixelles", "Ittres", "Wavre"];
+const communes = [
+  `Anderlecht`,
+  `Auderghem`,
+  `Berchem-Sainte-Agathe`,
+  `Ville de Bruxelles`,
+  `Etterbeek`,
+  `Evere`,
+  `Forest`,
+  `Ganshoren`,
+  `Ixelles`,
+  `Jette`,
+  `Koekelberg`,
+  `Molenbeek-Saint-Jean`,
+  `Saint-Gilles`,
+  `Saint-Josse-ten-Noode`,
+  `Schaerbeek`,
+  `Uccle`,
+  `Watermael-Boitsfort`,
+  `Woluwe-Saint-Lambert`,
+  `Woluwe-Saint-Pierre`
+];
 const rwContainer = document.querySelector("#rw");
+const userLocation = Navigator.geolocation;
 
 const createCommunes = function(array) {
   let randomIndex = Math.floor(Math.random() * communes.length);
   const rwElement = document.createElement("span");
   rwElement.textContent = communes[randomIndex];
-  rwElement.classList.add("rw-animate");
+  rwElement.classList.add("rotate-word__word");
   rwContainer.replaceChild(rwElement, document.querySelector("#rw > span"));
 };
 

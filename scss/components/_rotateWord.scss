@@ -1,0 +1,34 @@
+.rotate-word {
+  padding: 2rem;
+  width: 100%;
+  background-color: #eee;
+  &__title {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    transition: all 0.2s;
+  }
+  &__word {
+    animation: fade-in-out 3s forwards 1 ease-in-out;
+    display: inline-block;
+    min-width: 50%;
+    text-align: right;
+    color: red;
+    opacity: 0;
+  }
+}
+
+/* Animations */
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
