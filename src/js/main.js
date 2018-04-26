@@ -85,17 +85,33 @@ const communes = [
   `Woluwe-Saint-Pierre`
 ];
 const rwContainer = document.querySelector("#rw");
-const userLocat = Navigator.geolocation;
 
 const createCommunes = function(array) {
-  let randomIndex = Math.floor(Math.random() * communes.length);
-  const rwElement = document.createElement("span");
-  rwElement.textContent = communes[randomIndex];
-  rwElement.classList.add("rotate-word__word");
-  rwContainer.replaceChild(rwElement, document.querySelector("#rw > span"));
+  let randomIndex1 = Math.floor(Math.random() * communes.length);
+  let randomIndex2 = Math.floor(Math.random() * communes.length);
+  const rwElement1 = document.createElement("span");
+  const rwElement2 = document.createElement("span");
+
+  rwElement1.textContent = communes[randomIndex1];
+  rwElement1.classList.add("rotate-word__word");
+  rwElement2.textContent = communes[randomIndex2];
+  rwElement2.classList.add("rotate-word__word");
+
+  rwContainer.appendChild(rwElement1);
+
+  setTimeout(function() {
+    rwContainer.insertBefore(rwElement2, document.querySelector("span"));
+  }, 1500);
+
+  rwContainer.removeChild(document.querySelector("#rw .rotate-word__word"));
+
+  setTimeout(function() {
+    rwContainer.removeChild(document.querySelector("#rw .rotate-word__word"));
+  }, 1500);
 };
 
 createCommunes(communes);
 const rotateCommunes = setInterval(function() {
+  console.log("tick");
   createCommunes(communes);
 }, 3000);

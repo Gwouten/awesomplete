@@ -63,17 +63,33 @@ input.addEventListener("awesomplete-select", function (e) {
 // Rotate city names
 var communes = ["Anderlecht", "Auderghem", "Berchem-Sainte-Agathe", "Ville de Bruxelles", "Etterbeek", "Evere", "Forest", "Ganshoren", "Ixelles", "Jette", "Koekelberg", "Molenbeek-Saint-Jean", "Saint-Gilles", "Saint-Josse-ten-Noode", "Schaerbeek", "Uccle", "Watermael-Boitsfort", "Woluwe-Saint-Lambert", "Woluwe-Saint-Pierre"];
 var rwContainer = document.querySelector("#rw");
-var userLocat = Navigator.geolocation;
 
 var createCommunes = function createCommunes(array) {
-  var randomIndex = Math.floor(Math.random() * communes.length);
-  var rwElement = document.createElement("span");
-  rwElement.textContent = communes[randomIndex];
-  rwElement.classList.add("rotate-word__word");
-  rwContainer.replaceChild(rwElement, document.querySelector("#rw > span"));
+  var randomIndex1 = Math.floor(Math.random() * communes.length);
+  var randomIndex2 = Math.floor(Math.random() * communes.length);
+  var rwElement1 = document.createElement("span");
+  var rwElement2 = document.createElement("span");
+
+  rwElement1.textContent = communes[randomIndex1];
+  rwElement1.classList.add("rotate-word__word");
+  rwElement2.textContent = communes[randomIndex2];
+  rwElement2.classList.add("rotate-word__word");
+
+  rwContainer.appendChild(rwElement1);
+
+  setTimeout(function () {
+    rwContainer.insertBefore(rwElement2, document.querySelector("span"));
+  }, 1500);
+
+  rwContainer.removeChild(document.querySelector("#rw .rotate-word__word"));
+
+  setTimeout(function () {
+    rwContainer.removeChild(document.querySelector("#rw .rotate-word__word"));
+  }, 1500);
 };
 
 createCommunes(communes);
 var rotateCommunes = setInterval(function () {
+  console.log("tick");
   createCommunes(communes);
 }, 3000);

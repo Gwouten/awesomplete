@@ -8,13 +8,18 @@
     text-transform: uppercase;
     font-family: sans-serif;
     transition: all 0.2s;
+    position: relative;
+    padding-left: 50%;
   }
   &__word {
-    animation: three-slide-in-out 3s forwards 1 ease-in-out;
+    animation: three-slide-in-out 3s forwards 1 linear;
     display: inline-block;
     min-width: 50%;
     text-align: right;
     opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
