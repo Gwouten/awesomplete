@@ -8,11 +8,10 @@
     transition: all 0.2s;
   }
   &__word {
-    animation: fade-in-out 3s forwards 1 ease-in-out;
+    animation: slide-in-out 3s forwards 1 ease-in-out;
     display: inline-block;
     min-width: 50%;
     text-align: right;
-    color: red;
     opacity: 0;
   }
 }
@@ -30,5 +29,24 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes slide-in-out {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  66% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }

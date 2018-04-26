@@ -1,55 +1,53 @@
+"use strict";
+
 // Instantiate Awesomplete
-const input = document.querySelector("#query");
-let currentRadioButton = function() {
-  const radioButtons = document.querySelectorAll('input[name="query-type"]');
+var input = document.querySelector("#query");
+var currentRadioButton = function currentRadioButton() {
+  var radioButtons = document.querySelectorAll('input[name="query-type"]');
   console.log();
 };
 
-const list = [
-  {
-    code: 1000,
-    commune: "Bruxelles",
-    candidats: ["Olivier", "Wouter"]
-  },
-  {
-    code: 1050,
-    commune: "Ixelles",
-    candidats: ["Gilles", "Christophe"]
-  },
-  {
-    code: 3000,
-    commune: "Leuven",
-    candidats: ["Etienne", "Sandro"]
-  }
-];
+var list = [{
+  code: 1000,
+  commune: "Bruxelles",
+  candidats: ["Olivier", "Wouter"]
+}, {
+  code: 1050,
+  commune: "Ixelles",
+  candidats: ["Gilles", "Christophe"]
+}, {
+  code: 3000,
+  commune: "Leuven",
+  candidats: ["Etienne", "Sandro"]
+}];
 
 // Awesomplete function that creates the Awesomplete object
-const awesomplete = function(list) {
+var awesomplete = function awesomplete(list) {
   new Awesomplete(input, {
-    list,
+    list: list,
     minChars: 1
   });
 };
 
-let myList = list.map(function(item) {
+var myList = list.map(function (item) {
   return item.code + " " + item.commune;
 });
 awesomplete(myList);
 
 // Try to create a list based on the input value
-document.querySelector("#query-group").addEventListener("change", function(e) {
+document.querySelector("#query-group").addEventListener("change", function (e) {
   currentRadioButton = e.target.id;
   input.value = "";
   if (currentRadioButton === "query-candidat") {
-    myList = list.map(function(item) {
+    myList = list.map(function (item) {
       return item.candidats;
     });
-    myList = myList.reduce(function(a, b) {
+    myList = myList.reduce(function (a, b) {
       return a + "," + b;
     });
     awesomplete(myList);
   } else {
-    myList = list.map(function(item) {
+    myList = list.map(function (item) {
       return item.code + " " + item.commune;
     });
     awesomplete(myList);
@@ -58,44 +56,24 @@ document.querySelector("#query-group").addEventListener("change", function(e) {
 });
 
 // Do something when selecting an option from the autocomplete dropdown
-input.addEventListener("awesomplete-select", function(e) {
+input.addEventListener("awesomplete-select", function (e) {
   console.log(e);
 });
 
 // Rotate city names
-const communes = [
-  `Anderlecht`,
-  `Auderghem`,
-  `Berchem-Sainte-Agathe`,
-  `Ville de Bruxelles`,
-  `Etterbeek`,
-  `Evere`,
-  `Forest`,
-  `Ganshoren`,
-  `Ixelles`,
-  `Jette`,
-  `Koekelberg`,
-  `Molenbeek-Saint-Jean`,
-  `Saint-Gilles`,
-  `Saint-Josse-ten-Noode`,
-  `Schaerbeek`,
-  `Uccle`,
-  `Watermael-Boitsfort`,
-  `Woluwe-Saint-Lambert`,
-  `Woluwe-Saint-Pierre`
-];
-const rwContainer = document.querySelector("#rw");
-const userLocation = Navigator.geolocation;
+var communes = ["Anderlecht", "Auderghem", "Berchem-Sainte-Agathe", "Ville de Bruxelles", "Etterbeek", "Evere", "Forest", "Ganshoren", "Ixelles", "Jette", "Koekelberg", "Molenbeek-Saint-Jean", "Saint-Gilles", "Saint-Josse-ten-Noode", "Schaerbeek", "Uccle", "Watermael-Boitsfort", "Woluwe-Saint-Lambert", "Woluwe-Saint-Pierre"];
+var rwContainer = document.querySelector("#rw");
+var userLocat = Navigator.geolocation;
 
-const createCommunes = function(array) {
-  let randomIndex = Math.floor(Math.random() * communes.length);
-  const rwElement = document.createElement("span");
+var createCommunes = function createCommunes(array) {
+  var randomIndex = Math.floor(Math.random() * communes.length);
+  var rwElement = document.createElement("span");
   rwElement.textContent = communes[randomIndex];
   rwElement.classList.add("rotate-word__word");
   rwContainer.replaceChild(rwElement, document.querySelector("#rw > span"));
 };
 
 createCommunes(communes);
-const rotateCommunes = setInterval(function() {
+var rotateCommunes = setInterval(function () {
   createCommunes(communes);
 }, 3000);
