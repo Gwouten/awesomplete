@@ -1,6 +1,9 @@
 // Instantiate Awesomplete
 const input = document.querySelector("#query");
-let currentRadioButton = "";
+let currentRadioButton = function() {
+  const radioButtons = document.querySelectorAll('input[name="query-type"]');
+  console.log();
+};
 
 const list = [
   {
@@ -20,6 +23,7 @@ const list = [
   }
 ];
 
+// Awesomplete function that creates the Awesomplete object
 const awesomplete = function(list) {
   new Awesomplete(input, {
     list,
@@ -30,6 +34,7 @@ const awesomplete = function(list) {
 let myList = list.map(function(item) {
   return item.code + " " + item.commune;
 });
+awesomplete(myList);
 
 // Try to create a list based on the input value
 document.querySelector("#query-group").addEventListener("change", function(e) {
@@ -56,3 +61,20 @@ document.querySelector("#query-group").addEventListener("change", function(e) {
 input.addEventListener("awesomplete-select", function(e) {
   console.log(e);
 });
+
+// Rotate city names
+const communes = ["Bruxelles", "Ixelles", "Ittres", "Wavre"];
+const rwContainer = document.querySelector("#rw");
+
+const createCommunes = function(array) {
+  let randomIndex = Math.floor(Math.random() * communes.length);
+  const rwElement = document.createElement("span");
+  rwElement.textContent = communes[randomIndex];
+  rwElement.classList.add("rw-animate");
+  rwContainer.replaceChild(rwElement, document.querySelector("#rw > span"));
+};
+
+createCommunes(communes);
+const rotateCommunes = setInterval(function() {
+  createCommunes(communes);
+}, 3000);
