@@ -2,13 +2,15 @@
   padding: 2rem;
   width: 100%;
   background-color: #eee;
+  perspective: 100%;
+
   &__title {
     text-transform: uppercase;
     font-family: sans-serif;
     transition: all 0.2s;
   }
   &__word {
-    animation: slide-in-out 3s forwards 1 ease-in-out;
+    animation: three-slide-in-out 3s forwards 1 ease-in-out;
     display: inline-block;
     min-width: 50%;
     text-align: right;
@@ -48,5 +50,24 @@
   100% {
     opacity: 0;
     transform: translateY(100%);
+  }
+}
+
+@keyframes three-slide-in-out {
+  0% {
+    opacity: 0;
+    transform: rotateX(45deg) translateY(-100%);
+  }
+  33% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0);
+  }
+  66% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotateX(-45deg) translateY(100%);
   }
 }
